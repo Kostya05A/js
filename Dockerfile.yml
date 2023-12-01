@@ -1,0 +1,20 @@
+# Используем официальный образ Node.js
+FROM node:latest
+
+# Создаем рабочую директорию внутри контейнера
+WORKDIR /usr/src/app
+
+# Копируем package.json и package-lock.json (если есть)
+COPY package*.json ./
+
+# Устанавливаем зависимости
+RUN npm install
+
+# Копируем исходный код приложения
+COPY . .
+
+# Открываем порт 5050
+EXPOSE 5050
+
+# Команда для запуска приложения
+CMD ["node", "your_app_file.js"]
